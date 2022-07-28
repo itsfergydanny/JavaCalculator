@@ -14,19 +14,7 @@ public class DigitOperation implements IOperation {
         if (!isDigit(buttonText)) {
             return;
         }
-
-        OperationType previousOperation = gui.getPreviousOperationType();
-
-        if (previousOperation == OperationType.DIGIT
-                || previousOperation == OperationType.NONE
-                || previousOperation == OperationType.CLEAR
-                || previousOperation == OperationType.PERIOD
-                || previousOperation == OperationType.NEGATIVE_POSITIVE
-                || previousOperation == OperationType.PERCENT
-        ) {
-            addDigit(buttonText);
-            return;
-        }
+        addDigit(buttonText);
     }
 
     @Override
@@ -63,13 +51,6 @@ public class DigitOperation implements IOperation {
         String temp = getDisplay(gui) + value;
         gui.setCurrentValue(Double.parseDouble(temp));
         setDisplay(gui, clean(temp));
-    }
-
-    private String clean(String text) {
-        if (text.endsWith(".0") || text.endsWith(".00")) {
-            return text.split("\\.0+")[0];
-        }
-        return text;
     }
 
     private void placeDigitAfterPeriod(double value) {

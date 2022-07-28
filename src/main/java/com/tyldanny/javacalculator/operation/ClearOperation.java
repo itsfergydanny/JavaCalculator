@@ -13,6 +13,8 @@ public class ClearOperation implements IOperation {
     public void handle(String buttonText) {
         gui.setCurrentValue(0);
         setDisplay(gui, "0");
+        gui.setPreviousValue(null);
+        setHistory(gui, "0");
     }
 
     @Override

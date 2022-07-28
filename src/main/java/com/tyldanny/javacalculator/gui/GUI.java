@@ -17,7 +17,11 @@ public class GUI {
     private int initialHeight;
     private int initialWidth;
     @Getter
+    private DisplayPane historyPane;
+    @Getter
     private DisplayPane displayPane;
+    @Getter @Setter
+    private Double previousValue = null;
     @Getter @Setter
     private double currentValue = 0;
     @Getter @Setter
@@ -32,12 +36,16 @@ public class GUI {
         OPERATIONS.put(OperationType.PERCENT, new PercentOperation(this));
         OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this));
         OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this));
+        OPERATIONS.put(OperationType.ADDITION, new AdditionOperation(this));
     }
 
     public void createAndShowGUI() {
         createBaseGUI();
 
-        Grid mainGrid = new Grid(6, 1, 0, 0, Color.decode("#4D8BFF"));
+        Grid mainGrid = new Grid(7, 1, 0, 0, Color.decode("#4D8BFF"));
+
+        historyPane = new DisplayPane();
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.red, historyPane));
 
         displayPane = new DisplayPane();
         mainGrid.add(new Grid(1, 4, 0, 0, Color.red, displayPane));
