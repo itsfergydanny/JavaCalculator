@@ -11,9 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GUI {
-    JFrame frame;
-    int initialHeight;
-    int initialWidth;
+    private JFrame frame;
+    private int initialHeight;
+    private int initialWidth;
+    @Getter
+    private DisplayPane displayPane;
 
     public GUI() {}
 
@@ -22,40 +24,42 @@ public class GUI {
 
         Grid mainGrid = new Grid(6, 1, 0, 0, Color.decode("#4D8BFF"));
 
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red, new DisplayPane()));
+        displayPane = new DisplayPane();
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.red, displayPane));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
-                    new ButtonPane("C"),
-                    new ButtonPane("+/-"),
-                    new ButtonPane("%"),
-                    new ButtonPane("/")
+                    new ButtonPane(this, "C"),
+                    new ButtonPane(this, "+/-"),
+                    new ButtonPane(this, "%"),
+                    new ButtonPane(this, "/")
         ));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
-                new ButtonPane("7"),
-                new ButtonPane("8"),
-                new ButtonPane("9"),
-                new ButtonPane("X")
+                new ButtonPane(this, "7"),
+                new ButtonPane(this, "8"),
+                new ButtonPane(this, "9"),
+                new ButtonPane(this, "X")
         ));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
-                new ButtonPane("4"),
-                new ButtonPane("5"),
-                new ButtonPane("6"),
-                new ButtonPane("-")
+                new ButtonPane(this, "4"),
+                new ButtonPane(this, "5"),
+                new ButtonPane(this, "6"),
+                new ButtonPane(this, "-")
         ));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
-                new ButtonPane("1"),
-                new ButtonPane("2"),
-                new ButtonPane("3"),
-                new ButtonPane("+")
+                new ButtonPane(this, "1"),
+                new ButtonPane(this, "2"),
+                new ButtonPane(this, "3"),
+                new ButtonPane(this, "+")
         ));
 
         mainGrid.add(new Grid(1, 3, 0, 0, Color.red,
-                new ButtonPane("0"),
-                new ButtonPane("."),
-                new ButtonPane("=")
+                new ButtonPane(this, "0"),
+                new ButtonPane(this, "0"),
+                new ButtonPane(this, "."),
+                new ButtonPane(this, "=")
         ));
 
         frame.add(mainGrid);
