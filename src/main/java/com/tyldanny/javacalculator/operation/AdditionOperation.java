@@ -20,7 +20,7 @@ public class AdditionOperation implements IOperation {
         }
 
         gui.setPreviousValue(gui.getPreviousValue() + gui.getCurrentValue());
-        setHistory(gui, gui.getPreviousValue() + "+");
+        setHistory(gui, clean(gui.getPreviousValue() + "") + "+");
         gui.setCurrentValue(0);
         setDisplay(gui, "0");
     }
