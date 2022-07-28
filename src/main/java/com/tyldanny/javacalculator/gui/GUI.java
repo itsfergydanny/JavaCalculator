@@ -20,16 +20,18 @@ public class GUI {
     private DisplayPane displayPane;
     @Getter @Setter
     private double currentValue = 0;
-    @Getter
+    @Getter @Setter
     private OperationType previousOperationType = OperationType.NONE;
     @Getter
     private final Map<OperationType, IOperation> OPERATIONS = new HashMap<>();
+    private boolean hasPeriod = false;
 
     public GUI() {
         OPERATIONS.put(OperationType.CLEAR, new ClearOperation(this));
         OPERATIONS.put(OperationType.NEGATIVE_POSITIVE, new NegativePositiveOperation(this));
         OPERATIONS.put(OperationType.PERCENT, new PercentOperation(this));
         OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this));
+        OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this));
     }
 
     public void createAndShowGUI() {
@@ -115,5 +117,13 @@ public class GUI {
 
     private Dimension getScreenSize() {
         return Toolkit.getDefaultToolkit().getScreenSize();
+    }
+
+    public boolean hasPeriod() {
+        return hasPeriod;
+    }
+
+    public void setHasPeriod(boolean hasPeriod) {
+        this.hasPeriod = hasPeriod;
     }
 }

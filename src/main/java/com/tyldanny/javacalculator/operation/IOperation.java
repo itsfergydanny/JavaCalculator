@@ -5,14 +5,14 @@ import com.tyldanny.javacalculator.gui.GUI;
 public interface IOperation {
     void handle(String buttonText);
 
+    void setPreviousOperationType(GUI gui);
+
     default void setDisplay(GUI gui, String text) {
-        gui.getDisplayPane().getField().setText(cleanOutput(text));
+        gui.setHasPeriod(text.contains("."));
+        gui.getDisplayPane().getField().setText(text);
     }
 
-    default String cleanOutput(String text) {
-        if (text.endsWith(".0") || text.endsWith(".00")) {
-            return text.split("\\.")[0];
-        }
-        return text;
+    default String getDisplay(GUI gui) {
+        return gui.getDisplayPane().getField().getText();
     }
 }

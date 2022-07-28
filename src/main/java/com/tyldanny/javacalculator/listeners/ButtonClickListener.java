@@ -10,7 +10,6 @@ public class ButtonClickListener implements ActionListener {
     private final GUI gui;
     private final String buttonText;
 
-
     public ButtonClickListener(GUI gui, String buttonText) {
         this.gui = gui;
         this.buttonText = buttonText;
@@ -26,5 +25,6 @@ public class ButtonClickListener implements ActionListener {
             return;
         }
         gui.getOPERATIONS().get(operation).handle(buttonText);
+        gui.getOPERATIONS().get(operation).setPreviousOperationType(gui);
     }
 }

@@ -14,4 +14,9 @@ public class NegativePositiveOperation implements IOperation {
         gui.setCurrentValue(gui.getCurrentValue() * -1);
         setDisplay(gui, gui.getCurrentValue() + "");
     }
+
+    @Override
+    public void setPreviousOperationType(GUI gui) {
+        gui.setPreviousOperationType(OperationType.NEGATIVE_POSITIVE);
+    }
 }

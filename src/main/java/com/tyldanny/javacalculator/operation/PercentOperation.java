@@ -14,4 +14,9 @@ public class PercentOperation implements IOperation {
         gui.setCurrentValue(gui.getCurrentValue() / 100);
         setDisplay(gui, gui.getCurrentValue() + "");
     }
+
+    @Override
+    public void setPreviousOperationType(GUI gui) {
+        gui.setPreviousOperationType(OperationType.PERCENT);
+    }
 }
