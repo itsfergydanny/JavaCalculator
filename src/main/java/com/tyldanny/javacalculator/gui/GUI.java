@@ -1,6 +1,7 @@
 package com.tyldanny.javacalculator.gui;
 
 import com.tyldanny.javacalculator.grids.Grid;
+import com.tyldanny.javacalculator.operation.*;
 import com.tyldanny.javacalculator.panes.ButtonPane;
 import com.tyldanny.javacalculator.panes.DisplayPane;
 import lombok.Getter;
@@ -19,8 +20,17 @@ public class GUI {
     private DisplayPane displayPane;
     @Getter @Setter
     private double currentValue = 0;
+    @Getter
+    private OperationType previousOperationType = OperationType.NONE;
+    @Getter
+    private final Map<OperationType, IOperation> OPERATIONS = new HashMap<>();
 
-    public GUI() {}
+    public GUI() {
+        OPERATIONS.put(OperationType.CLEAR, new ClearOperation(this));
+        OPERATIONS.put(OperationType.NEGATIVE_POSITIVE, new NegativePositiveOperation(this));
+        OPERATIONS.put(OperationType.PERCENT, new PercentOperation(this));
+        OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this));
+    }
 
     public void createAndShowGUI() {
         createBaseGUI();

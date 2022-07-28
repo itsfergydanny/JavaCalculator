@@ -1,61 +1,30 @@
 package com.tyldanny.javacalculator.listeners;
 
-import com.tyldanny.javacalculator.events.ButtonClickEvent;
 import com.tyldanny.javacalculator.gui.GUI;
-import com.tyldanny.javacalculator.panes.DisplayPane;
+import com.tyldanny.javacalculator.operation.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ButtonClickListener implements ActionListener {
     private final GUI gui;
-    private String text;
+    private final String buttonText;
 
-    public ButtonClickListener(GUI gui, String text) {
+
+    public ButtonClickListener(GUI gui, String buttonText) {
         this.gui = gui;
-        this.text = text;
+        this.buttonText = buttonText;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (handleDigits()) {
+        OperationType operation = OperationType.getFromText(buttonText);
+        if (operation == OperationType.NONE) {
             return;
         }
-
-        if (text.equalsIgnoreCase("C")) {
-            gui.setCurrentValue(0);
-            setDisplay("0");
+        if (!gui.getOPERATIONS().containsKey(operation)) {
             return;
         }
-
-
-        setDisplay(text);
-    }
-
-    private boolean handleDigits() {
-        try {
-            double val = Double.parseDouble(text);
-            String result;
-            if (gui.getCurrentValue() == 0) {
-                result = val + "";
-            } else {
-                String temp = gui.getCurrentValue() + "";
-                if (temp.contains(".")) {
-                    temp = temp.split("\\.")[0] + text + "." + temp.split("\\.")[1];
-                }
-                result = temp;
-            }
-
-            gui.setCurrentValue(Double.parseDouble(result));
-
-            setDisplay(result);
-            return true;
-        } catch (NumberFormatException ignore) {
-            return false;
-        }
-    }
-
-    private void setDisplay(String text) {
-        gui.getDisplayPane().getField().setText(text);
+        gui.getOPERATIONS().get(operation).handle(buttonText);
     }
 }
