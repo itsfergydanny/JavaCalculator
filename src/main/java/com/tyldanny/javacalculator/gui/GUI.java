@@ -4,6 +4,7 @@ import com.tyldanny.javacalculator.grids.Grid;
 import com.tyldanny.javacalculator.panes.ButtonPane;
 import com.tyldanny.javacalculator.panes.DisplayPane;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +17,8 @@ public class GUI {
     private int initialWidth;
     @Getter
     private DisplayPane displayPane;
+    @Getter @Setter
+    private double currentValue = 0;
 
     public GUI() {}
 

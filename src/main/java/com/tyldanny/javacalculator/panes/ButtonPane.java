@@ -9,7 +9,7 @@ import java.awt.*;
 public class ButtonPane extends JPanel {
     public ButtonPane(GUI gui, String text) {
         JButton button = new JButton(text);
-        button.addActionListener(new ButtonClickListener(gui.getDisplayPane(), text));
+        button.addActionListener(new ButtonClickListener(gui, text));
         this.setLayout(new GridLayout(0, 1));
         this.add(button);
     }
