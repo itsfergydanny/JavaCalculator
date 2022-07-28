@@ -37,6 +37,7 @@ public class GUI {
         OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this));
         OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this));
         OPERATIONS.put(OperationType.ADDITION, new AdditionOperation(this));
+        OPERATIONS.put(OperationType.EQUALS, new EqualsOperation(this));
     }
 
     public void createAndShowGUI() {

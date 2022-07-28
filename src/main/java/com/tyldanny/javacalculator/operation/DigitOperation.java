@@ -19,7 +19,7 @@ public class DigitOperation implements IOperation {
 
     @Override
     public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.DIGIT);
+        // dont set it here
     }
 
     private boolean isDigit(String buttonText) {
