@@ -18,6 +18,21 @@ public class ButtonClickListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (handleDigits()) {
+            return;
+        }
+
+        if (text.equalsIgnoreCase("C")) {
+            gui.setCurrentValue(0);
+            setDisplay("0");
+            return;
+        }
+
+
+        setDisplay(text);
+    }
+
+    private boolean handleDigits() {
         try {
             double val = Double.parseDouble(text);
             String result;
@@ -34,11 +49,10 @@ public class ButtonClickListener implements ActionListener {
             gui.setCurrentValue(Double.parseDouble(result));
 
             setDisplay(result);
-            return;
-        } catch (NumberFormatException ignore) {}
-
-
-        setDisplay(text);
+            return true;
+        } catch (NumberFormatException ignore) {
+            return false;
+        }
     }
 
     private void setDisplay(String text) {
