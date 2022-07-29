@@ -14,19 +14,29 @@ public class EqualsOperation implements IOperation {
         if (gui.getPreviousValue() == null) {
             setHistory(gui, gui.getCurrentValue() + "");
             gui.setPreviousValue(gui.getCurrentValue());
-            gui.setCurrentValue(0);
+            gui.setCurrentValue(0d);
             setDisplay(gui, "0");
+            return;
+        }
+
+        if (gui.getPreviousOperationType() == OperationType.EQUALS) {
             return;
         }
 
         if (gui.getPreviousOperationType() == OperationType.ADDITION) {
             gui.setPreviousValue(gui.getPreviousValue() + gui.getCurrentValue());
+        } else if (gui.getPreviousOperationType() == OperationType.MULTIPLICATION) {
+            gui.setPreviousValue(gui.getPreviousValue() * gui.getCurrentValue());
+        } else if (gui.getPreviousOperationType() == OperationType.DIVISION) {
+            gui.setPreviousValue(gui.getPreviousValue() / gui.getCurrentValue());
+        } else if (gui.getPreviousOperationType() == OperationType.SUBTRACTION) {
+            gui.setPreviousValue(gui.getPreviousValue() - gui.getCurrentValue());
         } else {
             gui.setPreviousValue(gui.getCurrentValue());
         }
 
         setHistory(gui, clean(gui.getPreviousValue() + ""));
-        gui.setCurrentValue(0);
+        gui.setCurrentValue(0d);
         setDisplay(gui, "0");
     }
 

@@ -20,6 +20,11 @@ public interface IOperation {
         gui.getDisplayPane().getField().setText(text);
     }
 
+    default String removeOtherOperators(String text) {
+        String regex = "";
+        return text.replaceAll(regex, "");
+    }
+
     default String clean(String text) {
         if (text.endsWith(".0") || text.endsWith(".00")) {
             return text.split("\\.0+")[0];

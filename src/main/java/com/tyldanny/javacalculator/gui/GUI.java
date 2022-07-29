@@ -23,7 +23,7 @@ public class GUI {
     @Getter @Setter
     private Double previousValue = null;
     @Getter @Setter
-    private double currentValue = 0;
+    private Double currentValue = 0d;
     @Getter @Setter
     private OperationType previousOperationType = OperationType.NONE;
     @Getter
@@ -38,6 +38,9 @@ public class GUI {
         OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this));
         OPERATIONS.put(OperationType.ADDITION, new AdditionOperation(this));
         OPERATIONS.put(OperationType.EQUALS, new EqualsOperation(this));
+        OPERATIONS.put(OperationType.MULTIPLICATION, new MultiplicationOperation(this));
+        OPERATIONS.put(OperationType.DIVISION, new DivisionOperation(this));
+        OPERATIONS.put(OperationType.SUBTRACTION, new SubtractionOperation(this));
     }
 
     public void createAndShowGUI() {
