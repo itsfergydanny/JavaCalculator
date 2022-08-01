@@ -11,13 +11,9 @@ public class PeriodOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        if (!gui.hasPeriod()) {
-            setDisplay(gui, getDisplay(gui) + ".");
+        if (getDisplay(gui).contains(".")) {
+            return;
         }
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.CLEAR);
+        setDisplay(gui, getDisplay(gui) + ".");
     }
 }

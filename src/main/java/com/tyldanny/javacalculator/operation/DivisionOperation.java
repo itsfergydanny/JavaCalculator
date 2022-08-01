@@ -11,27 +11,23 @@ public class DivisionOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        if (gui.getPreviousValue() == null) {
-            setHistory(gui, getDisplay(gui) + "/");
-            gui.setPreviousValue(gui.getCurrentValue());
-            gui.setCurrentValue(0d);
-            setDisplay(gui, "0");
+        if (getHistory(gui).contains("/")) {
+            try {
+                double previousValue = Double.parseDouble(getHistory(gui).replace("/", ""));
+                double nextValue = Double.parseDouble(getDisplay(gui));
+                setHistory(gui, clean((previousValue / nextValue) + "") + "/");
+                setDisplay(gui, "0");
+                return;
+            } catch (NumberFormatException ignore) {}
             return;
         }
 
-        if (!getHistory(gui).contains("/")) {
+        if (!getHistory(gui).equals("0")) {
             setHistory(gui, getHistory(gui) + "/");
             return;
         }
 
-        gui.setPreviousValue(gui.getPreviousValue() / gui.getCurrentValue());
-        setHistory(gui, clean(gui.getPreviousValue() + "") + "/");
-        gui.setCurrentValue(0d);
+        setHistory(gui, getDisplay(gui) + "/");
         setDisplay(gui, "0");
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.DIVISION);
     }
 }

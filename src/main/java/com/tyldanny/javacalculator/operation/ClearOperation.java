@@ -11,14 +11,7 @@ public class ClearOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        gui.setCurrentValue(0d);
-        setDisplay(gui, "0");
-        gui.setPreviousValue(null);
         setHistory(gui, "0");
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.CLEAR);
+        setDisplay(gui, "0");
     }
 }

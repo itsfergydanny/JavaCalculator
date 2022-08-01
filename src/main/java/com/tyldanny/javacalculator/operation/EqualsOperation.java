@@ -11,37 +11,33 @@ public class EqualsOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        if (gui.getPreviousValue() == null) {
-            setHistory(gui, gui.getCurrentValue() + "");
-            gui.setPreviousValue(gui.getCurrentValue());
-            gui.setCurrentValue(0d);
-            setDisplay(gui, "0");
-            return;
-        }
+        try {
+            String history = getHistory(gui);
 
-        if (gui.getPreviousOperationType() == OperationType.EQUALS) {
-            return;
-        }
+            double previousValue;
+            double nextValue = Double.parseDouble(getDisplay(gui));
 
-        if (gui.getPreviousOperationType() == OperationType.ADDITION) {
-            gui.setPreviousValue(gui.getPreviousValue() + gui.getCurrentValue());
-        } else if (gui.getPreviousOperationType() == OperationType.MULTIPLICATION) {
-            gui.setPreviousValue(gui.getPreviousValue() * gui.getCurrentValue());
-        } else if (gui.getPreviousOperationType() == OperationType.DIVISION) {
-            gui.setPreviousValue(gui.getPreviousValue() / gui.getCurrentValue());
-        } else if (gui.getPreviousOperationType() == OperationType.SUBTRACTION) {
-            gui.setPreviousValue(gui.getPreviousValue() - gui.getCurrentValue());
-        } else {
-            gui.setPreviousValue(gui.getCurrentValue());
-        }
-
-        setHistory(gui, clean(gui.getPreviousValue() + ""));
-        gui.setCurrentValue(0d);
-        setDisplay(gui, "0");
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.EQUALS);
+            if (history.contains("+")) {
+                history = history.replace("+", "");
+                previousValue = Double.parseDouble(history);
+                setHistory(gui, clean((previousValue + nextValue) + ""));
+                setDisplay(gui, "0");
+            } else if (history.contains("/")) {
+                history = history.replace("/", "");
+                previousValue = Double.parseDouble(history);
+                setHistory(gui, clean((previousValue / nextValue) + ""));
+                setDisplay(gui, "0");
+            } else if (history.contains("X")) {
+                history = history.replace("X", "");
+                previousValue = Double.parseDouble(history);
+                setHistory(gui, clean((previousValue * nextValue) + ""));
+                setDisplay(gui, "0");
+            } else if (history.contains("-")) {
+                history = history.replace("-", "");
+                previousValue = Double.parseDouble(history);
+                setHistory(gui, clean((previousValue - nextValue) + ""));
+                setDisplay(gui, "0");
+            }
+        } catch (NumberFormatException ignore) {ignore.printStackTrace();}
     }
 }

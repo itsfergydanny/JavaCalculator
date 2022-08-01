@@ -21,10 +21,6 @@ public class GUI {
     @Getter
     private DisplayPane displayPane;
     @Getter @Setter
-    private Double previousValue = null;
-    @Getter @Setter
-    private Double currentValue = 0d;
-    @Getter @Setter
     private OperationType previousOperationType = OperationType.NONE;
     @Getter
     private final Map<OperationType, IOperation> OPERATIONS = new HashMap<>();
@@ -46,43 +42,43 @@ public class GUI {
     public void createAndShowGUI() {
         createBaseGUI();
 
-        Grid mainGrid = new Grid(7, 1, 0, 0, Color.decode("#4D8BFF"));
+        Grid mainGrid = new Grid(7, 1, 0, 0, Color.WHITE);
 
-        historyPane = new DisplayPane();
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red, historyPane));
+        historyPane = new DisplayPane(Color.DARK_GRAY);
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE, historyPane));
 
-        displayPane = new DisplayPane();
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red, displayPane));
+        displayPane = new DisplayPane(Color.BLACK);
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE, displayPane));
 
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
                     new ButtonPane(this, "C"),
                     new ButtonPane(this, "+/-"),
                     new ButtonPane(this, "%"),
                     new ButtonPane(this, "/")
         ));
 
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
                 new ButtonPane(this, "7"),
                 new ButtonPane(this, "8"),
                 new ButtonPane(this, "9"),
                 new ButtonPane(this, "X")
         ));
 
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
                 new ButtonPane(this, "4"),
                 new ButtonPane(this, "5"),
                 new ButtonPane(this, "6"),
                 new ButtonPane(this, "-")
         ));
 
-        mainGrid.add(new Grid(1, 4, 0, 0, Color.red,
+        mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
                 new ButtonPane(this, "1"),
                 new ButtonPane(this, "2"),
                 new ButtonPane(this, "3"),
                 new ButtonPane(this, "+")
         ));
 
-        mainGrid.add(new Grid(1, 3, 0, 0, Color.red,
+        mainGrid.add(new Grid(1, 3, 0, 0, Color.WHITE,
                 new ButtonPane(this, "0"),
                 new ButtonPane(this, "0"),
                 new ButtonPane(this, "."),
@@ -96,7 +92,7 @@ public class GUI {
     }
 
     private void createBaseGUI() {
-        frame = new JFrame("HelloWorld");
+        frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setInitialSizeAndPosition();
     }

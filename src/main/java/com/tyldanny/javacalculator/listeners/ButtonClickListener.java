@@ -25,6 +25,5 @@ public class ButtonClickListener implements ActionListener {
             return;
         }
         gui.getOPERATIONS().get(operation).handle(buttonText);
-        gui.getOPERATIONS().get(operation).setPreviousOperationType(gui);
     }
 }

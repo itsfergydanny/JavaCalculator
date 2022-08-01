@@ -5,8 +5,6 @@ import com.tyldanny.javacalculator.gui.GUI;
 public interface IOperation {
     void handle(String buttonText);
 
-    void setPreviousOperationType(GUI gui);
-
     default void setHistory(GUI gui, String text) {
         gui.getHistoryPane().getField().setText(text);
     }
@@ -18,11 +16,6 @@ public interface IOperation {
     default void setDisplay(GUI gui, String text) {
         gui.setHasPeriod(text.contains("."));
         gui.getDisplayPane().getField().setText(text);
-    }
-
-    default String removeOtherOperators(String text) {
-        String regex = "";
-        return text.replaceAll(regex, "");
     }
 
     default String clean(String text) {

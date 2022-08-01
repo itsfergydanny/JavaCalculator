@@ -11,27 +11,23 @@ public class MultiplicationOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        if (gui.getPreviousValue() == null) {
-            setHistory(gui, getDisplay(gui) + "X");
-            gui.setPreviousValue(gui.getCurrentValue());
-            gui.setCurrentValue(0d);
-            setDisplay(gui, "0");
+        if (getHistory(gui).contains("X")) {
+            try {
+                double previousValue = Double.parseDouble(getHistory(gui).replace("X", ""));
+                double nextValue = Double.parseDouble(getDisplay(gui));
+                setHistory(gui, clean((previousValue * nextValue) + "") + "X");
+                setDisplay(gui, "0");
+                return;
+            } catch (NumberFormatException ignore) {}
             return;
         }
 
-        if (!getHistory(gui).contains("X")) {
+        if (!getHistory(gui).equals("0")) {
             setHistory(gui, getHistory(gui) + "X");
             return;
         }
 
-        gui.setPreviousValue(gui.getPreviousValue() * gui.getCurrentValue());
-        setHistory(gui, clean(gui.getPreviousValue() + "") + "X");
-        gui.setCurrentValue(0d);
+        setHistory(gui, getDisplay(gui) + "X");
         setDisplay(gui, "0");
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.MULTIPLICATION);
     }
 }

@@ -11,12 +11,10 @@ public class NegativePositiveOperation implements IOperation {
 
     @Override
     public void handle(String buttonText) {
-        gui.setCurrentValue(gui.getCurrentValue() * -1);
-        setDisplay(gui, gui.getCurrentValue() + "");
-    }
-
-    @Override
-    public void setPreviousOperationType(GUI gui) {
-        gui.setPreviousOperationType(OperationType.NEGATIVE_POSITIVE);
+        if (getDisplay(gui).contains("-")) {
+            setDisplay(gui, getDisplay(gui).replace("-", ""));
+            return;
+        }
+        setDisplay(gui, "-" + getDisplay(gui));
     }
 }

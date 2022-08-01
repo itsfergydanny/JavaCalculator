@@ -1,18 +1,15 @@
 package com.tyldanny.javacalculator.events;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 
-@Getter
+@AllArgsConstructor
 public class ButtonClickEvent implements Action {
     private final String message;
-
-    public ButtonClickEvent(String message) {
-        this.message = message;
-    }
 
     @Override
     public Object getValue(String key) {
@@ -20,14 +17,10 @@ public class ButtonClickEvent implements Action {
     }
 
     @Override
-    public void putValue(String key, Object value) {
-
-    }
+    public void putValue(String key, Object value) {}
 
     @Override
-    public void setEnabled(boolean b) {
-
-    }
+    public void setEnabled(boolean b) {}
 
     @Override
     public boolean isEnabled() {
@@ -35,17 +28,11 @@ public class ButtonClickEvent implements Action {
     }
 
     @Override
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-
-    }
+    public void addPropertyChangeListener(PropertyChangeListener listener) {}
 
     @Override
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-
-    }
+    public void removePropertyChangeListener(PropertyChangeListener listener) {}
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
+    public void actionPerformed(ActionEvent e) {}
 }
