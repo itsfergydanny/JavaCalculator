@@ -21,7 +21,7 @@ public class BasicOperation extends Operation {
             return;
         }
 
-        setHistory(getHistory().replaceAll("[^0-9]", ""));
+        setHistory(getHistory().replaceAll("[^0-9.]", ""));
 
         if (!getHistory().equals("0")) {
             setHistory(getHistory() + getType().label);
