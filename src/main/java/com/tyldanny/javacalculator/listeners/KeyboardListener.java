@@ -20,7 +20,7 @@ public class KeyboardListener implements KeyEventDispatcher {
     @Override
     public boolean dispatchKeyEvent(KeyEvent e) {
         if (lastPressed + 200 > System.currentTimeMillis()) {
-            return false;
+            return true;
         }
 
         lastPressed = System.currentTimeMillis();
@@ -29,14 +29,16 @@ public class KeyboardListener implements KeyEventDispatcher {
 
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             c = "=";
+        } else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE) {
+            c = "DEL";
         }
 
         OperationType type = OperationType.getFromText(c);
         if (type == OperationType.NONE) {
-            return false;
+            return true;
         }
 
         gui.getOPERATIONS().get(type).handle(c);
-        return false;
+        return true;
     }
 }

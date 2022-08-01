@@ -11,7 +11,8 @@ public enum OperationType {
     PERIOD("."),
     EQUALS("="),
     DIGIT("0-9"),
-    NONE("None");
+    DEL("DEL"),
+    NONE("NONE");
 
     public final String label;
 
@@ -46,6 +47,9 @@ public enum OperationType {
         }
         if (text.equals("=")) {
             return EQUALS;
+        }
+        if (text.equals("DEL")) {
+            return DEL;
         }
 
         String regex = "[0-9]+";

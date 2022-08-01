@@ -37,6 +37,7 @@ public class GUI {
         OPERATIONS.put(OperationType.MULTIPLICATION, new BasicOperation(this, OperationType.MULTIPLICATION));
         OPERATIONS.put(OperationType.DIVISION, new BasicOperation(this, OperationType.DIVISION));
         OPERATIONS.put(OperationType.SUBTRACTION, new BasicOperation(this, OperationType.SUBTRACTION));
+        OPERATIONS.put(OperationType.DEL, new DelOperation(this, OperationType.DEL));
     }
 
     public void createAndShowGUI() {
@@ -52,7 +53,7 @@ public class GUI {
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
                     new ButtonPane(this, "C"),
-                    new ButtonPane(this, "+/-"),
+                    new ButtonPane(this, "DEL"),
                     new ButtonPane(this, "%"),
                     new ButtonPane(this, "/")
         ));
@@ -79,7 +80,7 @@ public class GUI {
         ));
 
         mainGrid.add(new Grid(1, 3, 0, 0, Color.WHITE,
-                new ButtonPane(this, "0"),
+                new ButtonPane(this, "+/-"),
                 new ButtonPane(this, "0"),
                 new ButtonPane(this, "."),
                 new ButtonPane(this, "=")
