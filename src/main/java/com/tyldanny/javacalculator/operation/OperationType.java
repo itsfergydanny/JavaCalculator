@@ -5,7 +5,7 @@ public enum OperationType {
     NEGATIVE_POSITIVE("+/-"),
     PERCENT("%"),
     DIVISION("/"),
-    MULTIPLICATION("X"),
+    MULTIPLICATION("*"),
     SUBTRACTION("-"),
     ADDITION("+"),
     PERIOD("."),
@@ -20,7 +20,7 @@ public enum OperationType {
     }
 
     public static OperationType getFromText(String text) {
-        if (text.equals("C")) {
+        if (text.equalsIgnoreCase("C")) {
             return CLEAR;
         }
         if (text.equals("+/-")) {
@@ -32,7 +32,7 @@ public enum OperationType {
         if (text.equals("/")) {
             return DIVISION;
         }
-        if (text.equals("X")) {
+        if (text.equals("*")) {
             return MULTIPLICATION;
         }
         if (text.equals("-")) {

@@ -1,6 +1,7 @@
 package com.tyldanny.javacalculator.gui;
 
 import com.tyldanny.javacalculator.grids.Grid;
+import com.tyldanny.javacalculator.listeners.KeyboardListener;
 import com.tyldanny.javacalculator.operation.*;
 import com.tyldanny.javacalculator.panes.ButtonPane;
 import com.tyldanny.javacalculator.panes.DisplayPane;
@@ -60,7 +61,7 @@ public class GUI {
                 new ButtonPane(this, "7"),
                 new ButtonPane(this, "8"),
                 new ButtonPane(this, "9"),
-                new ButtonPane(this, "X")
+                new ButtonPane(this, "*")
         ));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,
@@ -93,7 +94,12 @@ public class GUI {
     private void createBaseGUI() {
         frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        handleKeyboard();
         setInitialSizeAndPosition();
+    }
+
+    private void handleKeyboard() {
+        KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyboardListener(this));
     }
 
     private void setInitialSizeAndPosition() {

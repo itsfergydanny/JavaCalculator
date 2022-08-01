@@ -10,7 +10,7 @@ public class EqualsOperation extends Operation {
     public void handle(String buttonText) {
         String history = getHistory();
 
-        if (!history.contains("+") && !history.contains("-") && !history.contains("/") && !history.contains("X")) {
+        if (!history.contains("+") && !history.contains("-") && !history.contains("/") && !history.contains("*")) {
             setHistory(getDisplay());
             setDisplay("0");
             return;
@@ -31,8 +31,8 @@ public class EqualsOperation extends Operation {
                 previousValue = Double.parseDouble(history);
                 setHistory(clean((previousValue / nextValue) + ""));
                 setDisplay("0");
-            } else if (history.contains("X")) {
-                history = history.replace("X", "");
+            } else if (history.contains("*")) {
+                history = history.replace("*", "");
                 previousValue = Double.parseDouble(history);
                 setHistory(clean((previousValue * nextValue) + ""));
                 setDisplay("0");
