@@ -2,18 +2,15 @@ package com.tyldanny.javacalculator.operation;
 
 import com.tyldanny.javacalculator.gui.GUI;
 
-public class PeriodOperation implements IOperation {
-    private final GUI gui;
-
-    public PeriodOperation(GUI gui) {
-        this.gui = gui;
+public class PeriodOperation extends Operation {
+    public PeriodOperation(GUI gui, OperationType type) {
+        super(gui, type);
     }
 
-    @Override
     public void handle(String buttonText) {
-        if (getDisplay(gui).contains(".")) {
+        if (getDisplay().contains(".")) {
             return;
         }
-        setDisplay(gui, getDisplay(gui) + ".");
+        setDisplay(getDisplay() + ".");
     }
 }

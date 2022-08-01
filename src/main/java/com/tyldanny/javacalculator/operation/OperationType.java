@@ -1,17 +1,23 @@
 package com.tyldanny.javacalculator.operation;
 
 public enum OperationType {
-    CLEAR,
-    NEGATIVE_POSITIVE,
-    PERCENT,
-    DIVISION,
-    MULTIPLICATION,
-    SUBTRACTION,
-    ADDITION,
-    PERIOD,
-    EQUALS,
-    DIGIT,
-    NONE;
+    CLEAR("C"),
+    NEGATIVE_POSITIVE("+/-"),
+    PERCENT("%"),
+    DIVISION("/"),
+    MULTIPLICATION("X"),
+    SUBTRACTION("-"),
+    ADDITION("+"),
+    PERIOD("."),
+    EQUALS("="),
+    DIGIT("0-9"),
+    NONE("None");
+
+    public final String label;
+
+    OperationType(String label) {
+        this.label = label;
+    }
 
     public static OperationType getFromText(String text) {
         if (text.equals("C")) {

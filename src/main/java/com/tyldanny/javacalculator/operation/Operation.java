@@ -1,31 +1,43 @@
 package com.tyldanny.javacalculator.operation;
 
 import com.tyldanny.javacalculator.gui.GUI;
+import lombok.AllArgsConstructor;
 
-public interface IOperation {
-    void handle(String buttonText);
+@AllArgsConstructor
+public abstract class Operation {
+    private GUI gui;
+    private OperationType type;
 
-    default void setHistory(GUI gui, String text) {
+    abstract public void handle(String buttonText);
+
+    void setHistory(String text) {
         gui.getHistoryPane().getField().setText(text);
     }
 
-    default String getHistory(GUI gui) {
+    String getHistory() {
         return gui.getHistoryPane().getField().getText();
     }
 
-    default void setDisplay(GUI gui, String text) {
-        gui.setHasPeriod(text.contains("."));
+    void setDisplay(String text) {
         gui.getDisplayPane().getField().setText(text);
     }
 
-    default String clean(String text) {
+    String clean(String text) {
         if (text.endsWith(".0") || text.endsWith(".00")) {
             return text.split("\\.0+")[0];
         }
         return text;
     }
 
-    default String getDisplay(GUI gui) {
+    String getDisplay() {
         return gui.getDisplayPane().getField().getText();
+    }
+
+    public GUI getGui() {
+        return gui;
+    }
+
+    public OperationType getType() {
+        return type;
     }
 }

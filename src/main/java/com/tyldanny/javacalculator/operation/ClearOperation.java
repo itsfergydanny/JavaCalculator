@@ -2,16 +2,13 @@ package com.tyldanny.javacalculator.operation;
 
 import com.tyldanny.javacalculator.gui.GUI;
 
-public class ClearOperation implements IOperation {
-    private final GUI gui;
-
-    public ClearOperation(GUI gui) {
-        this.gui = gui;
+public class ClearOperation extends Operation {
+    public ClearOperation(GUI gui, OperationType type) {
+        super(gui, type);
     }
 
-    @Override
     public void handle(String buttonText) {
-        setHistory(gui, "0");
-        setDisplay(gui, "0");
+        setHistory("0");
+        setDisplay("0");
     }
 }

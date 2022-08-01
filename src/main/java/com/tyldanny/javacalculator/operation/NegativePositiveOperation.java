@@ -2,19 +2,16 @@ package com.tyldanny.javacalculator.operation;
 
 import com.tyldanny.javacalculator.gui.GUI;
 
-public class NegativePositiveOperation implements IOperation {
-    private final GUI gui;
-
-    public NegativePositiveOperation(GUI gui) {
-        this.gui = gui;
+public class NegativePositiveOperation extends Operation {
+    public NegativePositiveOperation(GUI gui, OperationType type) {
+        super(gui, type);
     }
 
-    @Override
     public void handle(String buttonText) {
-        if (getDisplay(gui).contains("-")) {
-            setDisplay(gui, getDisplay(gui).replace("-", ""));
+        if (getDisplay().contains("-")) {
+            setDisplay(getDisplay().replace("-", ""));
             return;
         }
-        setDisplay(gui, "-" + getDisplay(gui));
+        setDisplay("-" + getDisplay());
     }
 }

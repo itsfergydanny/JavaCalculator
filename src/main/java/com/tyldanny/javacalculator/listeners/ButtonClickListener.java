@@ -1,7 +1,7 @@
 package com.tyldanny.javacalculator.listeners;
 
 import com.tyldanny.javacalculator.gui.GUI;
-import com.tyldanny.javacalculator.operation.*;
+import com.tyldanny.javacalculator.operation.OperationType;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

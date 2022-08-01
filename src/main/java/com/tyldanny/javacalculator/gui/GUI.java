@@ -23,20 +23,19 @@ public class GUI {
     @Getter @Setter
     private OperationType previousOperationType = OperationType.NONE;
     @Getter
-    private final Map<OperationType, IOperation> OPERATIONS = new HashMap<>();
-    private boolean hasPeriod = false;
+    private final Map<OperationType, Operation> OPERATIONS = new HashMap<>();
 
     public GUI() {
-        OPERATIONS.put(OperationType.CLEAR, new ClearOperation(this));
-        OPERATIONS.put(OperationType.NEGATIVE_POSITIVE, new NegativePositiveOperation(this));
-        OPERATIONS.put(OperationType.PERCENT, new PercentOperation(this));
-        OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this));
-        OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this));
-        OPERATIONS.put(OperationType.ADDITION, new AdditionOperation(this));
-        OPERATIONS.put(OperationType.EQUALS, new EqualsOperation(this));
-        OPERATIONS.put(OperationType.MULTIPLICATION, new MultiplicationOperation(this));
-        OPERATIONS.put(OperationType.DIVISION, new DivisionOperation(this));
-        OPERATIONS.put(OperationType.SUBTRACTION, new SubtractionOperation(this));
+        OPERATIONS.put(OperationType.CLEAR, new ClearOperation(this, OperationType.CLEAR));
+        OPERATIONS.put(OperationType.NEGATIVE_POSITIVE, new NegativePositiveOperation(this, OperationType.NEGATIVE_POSITIVE));
+        OPERATIONS.put(OperationType.PERCENT, new PercentOperation(this, OperationType.PERCENT));
+        OPERATIONS.put(OperationType.DIGIT, new DigitOperation(this, OperationType.DIGIT));
+        OPERATIONS.put(OperationType.PERIOD, new PeriodOperation(this, OperationType.PERIOD));
+        OPERATIONS.put(OperationType.ADDITION, new BasicOperation(this, OperationType.ADDITION));
+        OPERATIONS.put(OperationType.EQUALS, new EqualsOperation(this, OperationType.EQUALS));
+        OPERATIONS.put(OperationType.MULTIPLICATION, new BasicOperation(this, OperationType.MULTIPLICATION));
+        OPERATIONS.put(OperationType.DIVISION, new BasicOperation(this, OperationType.DIVISION));
+        OPERATIONS.put(OperationType.SUBTRACTION, new BasicOperation(this, OperationType.SUBTRACTION));
     }
 
     public void createAndShowGUI() {
@@ -125,13 +124,5 @@ public class GUI {
 
     private Dimension getScreenSize() {
         return Toolkit.getDefaultToolkit().getScreenSize();
-    }
-
-    public boolean hasPeriod() {
-        return hasPeriod;
-    }
-
-    public void setHasPeriod(boolean hasPeriod) {
-        this.hasPeriod = hasPeriod;
     }
 }

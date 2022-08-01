@@ -2,42 +2,48 @@ package com.tyldanny.javacalculator.operation;
 
 import com.tyldanny.javacalculator.gui.GUI;
 
-public class EqualsOperation implements IOperation {
-    private final GUI gui;
-
-    public EqualsOperation(GUI gui) {
-        this.gui = gui;
+public class EqualsOperation extends Operation {
+    public EqualsOperation(GUI gui, OperationType type) {
+        super(gui, type);
     }
 
-    @Override
     public void handle(String buttonText) {
+        String history = getHistory();
+
+        if (!history.contains("+") && !history.contains("-") && !history.contains("/") && !history.contains("X")) {
+            setHistory(getDisplay());
+            setDisplay("0");
+            return;
+        }
+
         try {
-            String history = getHistory(gui);
 
             double previousValue;
-            double nextValue = Double.parseDouble(getDisplay(gui));
+            double nextValue = Double.parseDouble(getDisplay());
 
             if (history.contains("+")) {
                 history = history.replace("+", "");
                 previousValue = Double.parseDouble(history);
-                setHistory(gui, clean((previousValue + nextValue) + ""));
-                setDisplay(gui, "0");
+                setHistory(clean((previousValue + nextValue) + ""));
+                setDisplay("0");
             } else if (history.contains("/")) {
                 history = history.replace("/", "");
                 previousValue = Double.parseDouble(history);
-                setHistory(gui, clean((previousValue / nextValue) + ""));
-                setDisplay(gui, "0");
+                setHistory(clean((previousValue / nextValue) + ""));
+                setDisplay("0");
             } else if (history.contains("X")) {
                 history = history.replace("X", "");
                 previousValue = Double.parseDouble(history);
-                setHistory(gui, clean((previousValue * nextValue) + ""));
-                setDisplay(gui, "0");
+                setHistory(clean((previousValue * nextValue) + ""));
+                setDisplay("0");
             } else if (history.contains("-")) {
                 history = history.replace("-", "");
                 previousValue = Double.parseDouble(history);
-                setHistory(gui, clean((previousValue - nextValue) + ""));
-                setDisplay(gui, "0");
+                setHistory(clean((previousValue - nextValue) + ""));
+                setDisplay("0");
             }
-        } catch (NumberFormatException ignore) {ignore.printStackTrace();}
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+        }
     }
 }
