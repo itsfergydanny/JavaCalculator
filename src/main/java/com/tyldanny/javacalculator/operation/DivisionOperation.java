@@ -22,6 +22,8 @@ public class DivisionOperation implements IOperation {
             return;
         }
 
+        setHistory(gui, getHistory(gui).replaceAll("[^0-9]", ""));
+
         if (!getHistory(gui).equals("0")) {
             setHistory(gui, getHistory(gui) + "/");
             return;
