@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class GUI {
     private JFrame frame;
-    private int initialHeight;
+    @Getter private int initialHeight;
     private int initialWidth;
     @Getter
     private DisplayPane historyPane;
@@ -44,10 +44,10 @@ public class GUI {
 
         Grid mainGrid = new Grid(7, 1, 0, 0, Color.WHITE);
 
-        historyPane = new DisplayPane(Color.DARK_GRAY);
+        historyPane = new DisplayPane(Color.decode("#749CA7"));
         mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE, historyPane));
 
-        displayPane = new DisplayPane(Color.BLACK);
+        displayPane = new DisplayPane(Color.decode("#E7F6F2"));
         mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE, displayPane));
 
         mainGrid.add(new Grid(1, 4, 0, 0, Color.WHITE,

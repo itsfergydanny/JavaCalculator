@@ -14,7 +14,9 @@ public class DisplayPane extends JPanel {
         field.setEditable(false);
         field.setText("0");
         field.setFont(field.getFont().deriveFont(100f));
+        field.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         field.setForeground(color);
+        field.setBackground(Color.decode("#2C3333"));
         this.setLayout(new GridLayout(0, 1));
         this.add(field);
     }
